@@ -5,3 +5,6 @@ import (
 	"net"
 	"strings"
 )
+
+func main() {
+	fmt.Println("Listening on port :6379")
