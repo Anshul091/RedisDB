@@ -12,3 +12,7 @@ func main() {
 
 	// Create a new server
 	l, err := net.Listen("tcp", ":6379")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
