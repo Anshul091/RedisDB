@@ -23,3 +23,7 @@ func main() {
 		return
 	}
 	defer aof.Close()
+
+	// Listen for connections
+	conn, err := l.Accept()
+	if err != nil {
