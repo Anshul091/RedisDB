@@ -27,3 +27,6 @@ func main() {
 	// Listen for connections
 	conn, err := l.Accept()
 	if err != nil {
+		fmt.Println(err)
+		return
+	}
