@@ -30,3 +30,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+
+	defer conn.Close()
+
+	for {
