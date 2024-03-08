@@ -19,3 +19,7 @@ func main() {
 
 	aof, err := NewAof("database.aof")
 	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer aof.Close()
