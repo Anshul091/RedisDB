@@ -38,3 +38,6 @@ func main() {
 		value, err := resp.Read()
 		if err != nil {
 			fmt.Println(err)
+			return
+		}
+
