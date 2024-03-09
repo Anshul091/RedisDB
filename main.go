@@ -41,3 +41,7 @@ func main() {
 			return
 		}
 
+		if value.typ != "array" {
+			fmt.Println("Invalid request, expected array")
+			continue
+		}
