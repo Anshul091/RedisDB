@@ -34,3 +34,7 @@ func main() {
 	defer conn.Close()
 
 	for {
+		resp := NewResp(conn)
+		value, err := resp.Read()
+		if err != nil {
+			fmt.Println(err)
