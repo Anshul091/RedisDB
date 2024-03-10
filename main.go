@@ -52,3 +52,7 @@ func main() {
 		}
 
 		command := strings.ToUpper(value.array[0].bulk)
+		args := value.array[1:]
+
+		writer := NewWriter(conn)
+
