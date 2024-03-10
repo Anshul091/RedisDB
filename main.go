@@ -49,3 +49,6 @@ func main() {
 		if len(value.array) == 0 {
 			fmt.Println("Invalid request, expected array length > 0")
 			continue
+		}
+
+		command := strings.ToUpper(value.array[0].bulk)
