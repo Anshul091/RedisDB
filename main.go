@@ -56,3 +56,7 @@ func main() {
 
 		writer := NewWriter(conn)
 
+		handler, ok := Handlers[command]
+		if !ok {
+			fmt.Println("Invalid command: ", command)
+			writer.Write(Value{typ: "string", str: ""})
