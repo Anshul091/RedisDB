@@ -39,3 +39,24 @@ func (r *Resp) readLine() (line []byte, n int, err error) {
 		}
 		n += 1
 		line = append(line, b)
+		if len(line) >= 2 && line[len(line)-2] == '\r' {
+			break
+		}
+	}
+	return line[:len(line)-2], n, nil
+}
+
+func (r *Resp) readInteger() (x int, n int, err error) {
+	line, n, err := r.readLine()
+	if err != nil {
+		return 0, 0, err
+	}
+	i64, err := strconv.ParseInt(string(line), 10, 64)
+	if err != nil {
+		return 0, n, err
+	}
+	return int(i64), n, nil
+}
+
+func (r *Resp) Read() (Value, error) {
+	_type, err := r.reader.ReadByte()
