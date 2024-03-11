@@ -67,3 +67,7 @@ func main() {
 			aof.Write(value)
 		}
 
+		result := handler(args)
+		writer.Write(result)
+	}
+}
