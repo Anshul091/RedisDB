@@ -60,3 +60,24 @@ func (r *Resp) readInteger() (x int, n int, err error) {
 
 func (r *Resp) Read() (Value, error) {
 	_type, err := r.reader.ReadByte()
+
+	if err != nil {
+		return Value{}, err
+	}
+
+	switch _type {
+	case ARRAY:
+		return r.readArray()
+	case BULK:
+		return r.readBulk()
+	default:
+		fmt.Printf("Unknown type: %v", string(_type))
+		return Value{}, nil
+	}
+}
+
+func (r *Resp) readArray() (Value, error) {
+	v := Value{}
+	v.typ = "array"
+
+	// read length of array
