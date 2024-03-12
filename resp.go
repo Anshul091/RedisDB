@@ -102,3 +102,23 @@ func (r *Resp) readArray() (Value, error) {
 }
 
 func (r *Resp) readBulk() (Value, error) {
+	v := Value{}
+
+	v.typ = "bulk"
+	
+	fmt.Println("Hello World")
+	len, _, err := r.readInteger()
+	if err != nil {
+		return v, err
+	}
+
+	bulk := make([]byte, len)
+
+	r.reader.Read(bulk)
+
+	v.bulk = string(bulk)
+
+	// Read the trailing CRLF
+	r.readLine()
+
+	return v, nil
