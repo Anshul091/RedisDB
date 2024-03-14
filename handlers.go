@@ -17,3 +17,10 @@ var Handlers = map[string]func([]Value) Value{
 	"SET":  set,
 	"GET":  get,
 	"HSET": hset,
+	"HGET": hget,
+}
+
+var SETs = map[string]string{}
+var SETsMu = sync.RWMutex{}
+
+func set(args []Value) Value {
