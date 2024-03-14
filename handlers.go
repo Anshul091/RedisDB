@@ -30,3 +30,10 @@ func set(args []Value) Value {
 
 	key := args[0].bulk
 	value := args[1].bulk
+
+	SETsMu.Lock()
+	SETs[key] = value
+	SETsMu.Unlock()
+
+	return Value{typ: "string", str: "OK"}
+}
