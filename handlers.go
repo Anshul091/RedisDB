@@ -37,3 +37,9 @@ func set(args []Value) Value {
 
 	return Value{typ: "string", str: "OK"}
 }
+
+func get(args []Value) Value {
+	if len(args) != 1 {
+		return Value{typ: "error", str: "ERR wrong number of arguments for 'get' command"}
+	}
+
