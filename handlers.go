@@ -50,3 +50,9 @@ func get(args []Value) Value {
 	SETsMu.RUnlock()
 
 	if !ok {
+		return Value{typ: "null"}
+	}
+
+	return Value{typ: "bulk", bulk: value}
+}
+
