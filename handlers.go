@@ -43,3 +43,10 @@ func get(args []Value) Value {
 		return Value{typ: "error", str: "ERR wrong number of arguments for 'get' command"}
 	}
 
+	key := args[0].bulk
+
+	SETsMu.RLock()
+	value, ok := SETs[key]
+	SETsMu.RUnlock()
+
+	if !ok {
