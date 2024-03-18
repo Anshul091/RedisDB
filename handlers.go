@@ -56,3 +56,10 @@ func get(args []Value) Value {
 	return Value{typ: "bulk", bulk: value}
 }
 
+var HSETs = map[string]map[string]string{}
+var HSETsMu = sync.RWMutex{}
+
+func hset(args []Value) Value {
+	if len(args) != 3 {
+		return Value{typ: "error", str: "ERR wrong number of arguments for 'hset' command"}
+	}
