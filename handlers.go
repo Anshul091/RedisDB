@@ -89,3 +89,10 @@ func hget(args []Value) Value {
 	HSETsMu.RLock()
 	value, ok := HSETs[hash][key]
 	HSETsMu.RUnlock()
+
+	if !ok {
+		return Value{typ: "null"}
+	}
+
+	return Value{typ: "bulk", bulk: value}
+}
