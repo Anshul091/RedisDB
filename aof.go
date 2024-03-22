@@ -22,3 +22,9 @@ func NewAof(path string) (*Aof, error) {
 	aof := &Aof{
 		file: f,
 		rd:   bufio.NewReader(f),
+	}
+
+	// Start a goroutine to sync AOF to disk every 1 second
+	go func() {
+		for {
+			aof.mu.Lock()
