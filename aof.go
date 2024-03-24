@@ -34,3 +34,9 @@ func NewAof(path string) (*Aof, error) {
 			aof.mu.Unlock()
 
 			time.Sleep(time.Second)
+		}
+	}()
+
+	return aof, nil
+}
+
